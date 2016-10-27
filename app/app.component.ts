@@ -23,9 +23,9 @@ import { Meal } from './meal.model';
 
 export class AppComponent {
   public masterMealList: Meal[] = [
-      new Meal("Burrito", 0),
-      new Meal("Pizza", 1),
-      new Meal("Pho", 2),
+      new Meal("Burrito", "Bought at La Jarochita", 450),
+      new Meal("Pizza", "Ate 3 slices", 600),
+      new Meal("Pho", "Made at home", 275),
   ];
   selectedMeal: Meal = null;
   showDetails(clickedMeal: Meal) {

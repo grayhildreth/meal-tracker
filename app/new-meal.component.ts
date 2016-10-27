@@ -10,19 +10,25 @@ import { Meal } from './meal.model';
     <input #newDescription>
   </div>
   <div>
-    <label>Enter ID:</label>
-    <input #newId>
-    <button (click)="addClicked(newDescription.value, newId.value);
+    <label>Enter Details:</label>
+    <input #newDetails>
+  </div>
+  <div>
+    <label>Enter Calories:</label>
+    <input #newCalories>
+    <button (click)="addClicked(newDescription.value, newDetails.value, newCalories.value);
         newDescription.value='';
-        newId.value='';
+        newDetails.value='';
+        newCalories.value='';
       ">Add</button>
   </div>
   `
 })
 
 export class NewMealComponent {
-  addClicked(description: string, id: number) {
-   var newMealToAdd: Meal = new Meal(description, id);
+  @Output() newMealSender = new EventEmitter();
+  addClicked(description: string, details: string, calories: number) {
+   var newMealToAdd: Meal = new Meal(description, details, calories);
    this.newMealSender.emit(newMealToAdd);
   }
 }
