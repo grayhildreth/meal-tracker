@@ -5,20 +5,33 @@ import { Component } from '@angular/core';
   template: `
   <div class="container">
     <h1>Meal Tracker</h1>
-    <h3 *ngFor="let currentMeal of meals">{{ currentMeal.food }}</h3>
+    <h3 (click)="showDetails(currentMeal)" *ngFor="let currentMeal of meals">{{ currentMeal.description }}</h3>
+    <h1>Edit Meal</h1>
+    <div>
+      <label>Enter Meal Description:</label>
+      <input [(ngModel)]="selectedMeal.description">
+    </div>
+    <div>
+      <label>Enter Meal ID:</label>
+      <input [(ngModel)]="selectedMeal.id">
+    </div>
   </div>
   `
 })
 
 export class AppComponent {
   public meals: Meal[] = [
-      new Meal("Burrito", 560),
-      new Meal("Slice of Pizza", 250),
-      new Meal("Pasta", 400)
+      new Meal("Burrito", 0),
+      new Meal("Pizza", 1),
+      new Meal("Pho", 2),
   ];
+  selectedMeal: Meal = this.meals[0];
+  showDetails(clickedMeal: Meal) {
+    this.selectedMeal = clickedMeal;
+  }
 }
 
 export class Meal {
   public done: boolean = false;
-  constructor(public food: string, public calories: number) {   }
+  constructor(public description: string, public id: number) {   }
 }
