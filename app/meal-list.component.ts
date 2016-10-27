@@ -5,12 +5,13 @@ import { Meal } from './meal.model';
   selector: 'meal-list',
   template: `
   <select (change)="onChange($event.target.value)">
-    <option value="all">Show All</option>
-    <option value="under500">Under 500 Calories</option>
     <option value="over500" selected="selected">Over 500 Calories</option>
+    <option value="under500">Under 500 Calories</option>
+    <option selected value="all">Show All</option>
   </select>
+  <div *ngFor="let currentMeal of childMealList | calories:selectedCalories">
 
-  <div *ngFor="let currentMeal of childMealList">
+
     <h3>Meal: {{ currentMeal.description }}</h3>
     <h4>Details: {{ currentMeal.details }}</h4>
     <h4>Calories: {{ currentMeal.calories }}</h4>
@@ -22,6 +23,13 @@ import { Meal } from './meal.model';
 export class MealListComponent {
   @Input() childMealList: Meal[];
   @Output() clickSender = new EventEmitter();
+
+  public selectedCalories: string = "all";
+
+  onChange(optionFromMenu) {
+    this.selectedCalories = optionFromMenu;
+    console.log(this.selectedCalories);
+  }
   editButtonHasBeenClicked(mealToEdit: Meal) {
     this.clickSender.emit(mealToEdit);
   }
