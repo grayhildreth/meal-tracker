@@ -4,8 +4,12 @@ import { Component } from '@angular/core';
 Component({
     selector: 'my-app',
     template: `
-    <div>Skeleton template</div>
+    <div class="container">
+      <h1>Meal Tracker</h1>
+    </div>
 
   `
 })
-export class AppComponent {}
+export class AppComponent {
+
+}
