@@ -5,9 +5,9 @@ import { Meal } from './meal.model';
   selector: 'meal-list',
   template: `
   <div *ngFor="let currentMeal of childMealList">
-    <h3>{{ currentMeal.description }}</h3>
-    <h4>{{ currentMeal.details }}</h4>
-    <h4>{{ currentMeal.calories }}</h4>
+    <h3>Meal: {{ currentMeal.description }}</h3>
+    <h4>Details: {{ currentMeal.details }}</h4>
+    <h4>Calories: {{ currentMeal.calories }}</h4>
     <button (click)="editButtonHasBeenClicked(currentMeal)">Edit</button>
   </div>
   `
