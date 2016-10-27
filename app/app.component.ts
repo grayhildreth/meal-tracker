@@ -10,16 +10,10 @@ import { Meal } from './meal.model';
         [childMealList]="masterMealList"
         (clickSender)="showDetails($event)"
       ></meal-list>
-    <div *ngIf="selectedMeal">
-    <div>
-      <label>Enter Meal Description:</label>
-      <input [(ngModel)]="selectedMeal.description">
-    </div>
-    <div>
-      <label>Enter Meal ID:</label>
-      <input [(ngModel)]="selectedMeal.id">
-      <button (click)="finishedEditing()">Done</button>
-    </div>
+    <edit-meal
+      [childSelectedMeal]="selectedMeal"
+      (doneClickedSender)="finishedEditing()"
+    ></edit-meal>
   </div>
   `
 })
