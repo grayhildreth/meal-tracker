@@ -5,8 +5,12 @@ import { Component } from '@angular/core';
   template: `
   <div class="container">
     <h1>Meal Tracker</h1>
-    <h3 (click)="showDetails(currentMeal)" *ngFor="let currentMeal of meals">{{ currentMeal.description }}</h3>
+    <div *ngFor="let currentMeal of meals">
+      <h3>{{ currentMeal.description }}</h3>
+      <button (click)="showDetails(currentMeal)">Edit</button>
+    </div>
     <h1>Edit Meal</h1>
+    <div *ngIf="selectedMeal">
     <div>
       <label>Enter Meal Description:</label>
       <input [(ngModel)]="selectedMeal.description">
@@ -14,6 +18,7 @@ import { Component } from '@angular/core';
     <div>
       <label>Enter Meal ID:</label>
       <input [(ngModel)]="selectedMeal.id">
+      <button (click)="finishedEditing()">Done</button>
     </div>
   </div>
   `
@@ -25,11 +30,14 @@ export class AppComponent {
       new Meal("Pizza", 1),
       new Meal("Pho", 2),
   ];
-  selectedMeal: Meal = this.meals[0];
+  selectedMeal: Meal = null;
   showDetails(clickedMeal: Meal) {
     this.selectedMeal = clickedMeal;
   }
-}
+    finishedEditing() {
+      this.selectedMeal = null;
+    }
+  }
 
 export class Meal {
   public done: boolean = false;
